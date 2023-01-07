@@ -1,26 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   BRAND_NAME,
   kAboutUs,
   kProducts,
   kServices,
-  pProducts,
-  pService,
+  pAboutUs,
+  pHome,
 } from "../Utils/constants";
 
 export const Header = () => {
-  const navigate = useNavigate();
   return (
     <div className={styles.mainContainer}>
-      <p className={styles.itemsText}>{BRAND_NAME}</p>
-      <div className=" flex flex-row justify-between gap-x-16">
+      <Link className={styles.itemsText} to={pHome}>
+        {BRAND_NAME}
+      </Link>
+      <div className={styles.itemsContainer}>
         <p className={styles.itemsText}>{kProducts}</p>
-
-        <p className={styles.itemsText} onClick={() => navigate(pService)}>
-          {kServices}
-        </p>
-
-        <p className={styles.itemsText}>{kAboutUs}</p>
+        <p className={styles.itemsText}>{kServices}</p>
+        <Link className={styles.itemsText} to={pAboutUs}>
+          {kAboutUs}
+        </Link>
       </div>
     </div>
   );
@@ -28,6 +27,7 @@ export const Header = () => {
 
 const styles = {
   mainContainer:
-    "flex flex-row justify-around bg-black w-screen h-[50px] items-center",
+    "flex flex-row justify-around bg-black w-full h-[50px] items-center",
+  itemsContainer: "flex flex-row justify-between gap-x-16",
   itemsText: "text-2xl text-white cursor-pointer hover:text-red-800",
 };
